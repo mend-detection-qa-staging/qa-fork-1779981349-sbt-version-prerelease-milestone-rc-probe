@@ -1,0 +1,153 @@
+{
+    "schema_version": "1.0",
+    "pm": "sbt",
+    "sbt_version_tested": "1.9.8",
+    "scala_version_tested": "2.13.12",
+    "java_version_tested": "17",
+    "source_file": "build.sbt",
+    "manifest": "build.sbt",
+    "lockfile": null,
+    "detection_mode": "build-manifest-coursier",
+    "pattern": "version-prerelease-milestone-rc",
+    "notes": "Three direct dependencies each carrying a different prerelease qualifier: akka-actor_2.13:2.7.0-M1 (milestone), cats-effect_2.13:3.5.0-RC1 (release candidate), log4j-api:2.0-beta9 (beta). The prerelease qualifiers must be preserved verbatim in all reported version strings. Coursier resolution via sbt 1.9.8 on Maven Central. akka-actor pulls config:1.4.2 and scala-java8-compat_2.13:1.0.0 transitively. cats-effect pulls cats-effect-kernel_2.13:3.5.0-RC1 and cats-effect-std_2.13:3.5.0-RC1, which transitively pull cats-core_2.13:2.9.0 and cats-kernel_2.13:2.9.0. log4j-api:2.0-beta9 has no compile-scope transitives.",
+    "packages": [
+        {
+            "groupId": "com.typesafe.akka",
+            "artifactId": "akka-actor_2.13",
+            "version": "2.7.0-M1",
+            "version_constraint": "2.7.0-M1",
+            "scope": "compile",
+            "group": "main",
+            "source": "registry",
+            "direct": true,
+            "children": [
+                {
+                    "groupId": "com.typesafe",
+                    "artifactId": "config",
+                    "version": "1.4.2",
+                    "version_constraint": "1.4.2",
+                    "scope": "compile",
+                    "group": "main",
+                    "source": "registry",
+                    "direct": false,
+                    "children": []
+                },
+                {
+                    "groupId": "org.scala-lang.modules",
+                    "artifactId": "scala-java8-compat_2.13",
+                    "version": "1.0.0",
+                    "version_constraint": "1.0.0",
+                    "scope": "compile",
+                    "group": "main",
+                    "source": "registry",
+                    "direct": false,
+                    "children": []
+                }
+            ]
+        },
+        {
+            "groupId": "org.typelevel",
+            "artifactId": "cats-effect_2.13",
+            "version": "3.5.0-RC1",
+            "version_constraint": "3.5.0-RC1",
+            "scope": "compile",
+            "group": "main",
+            "source": "registry",
+            "direct": true,
+            "children": [
+                {
+                    "groupId": "org.typelevel",
+                    "artifactId": "cats-effect-kernel_2.13",
+                    "version": "3.5.0-RC1",
+                    "version_constraint": "3.5.0-RC1",
+                    "scope": "compile",
+                    "group": "main",
+                    "source": "registry",
+                    "direct": false,
+                    "children": [
+                        {
+                            "groupId": "org.typelevel",
+                            "artifactId": "cats-core_2.13",
+                            "version": "2.9.0",
+                            "version_constraint": "2.9.0",
+                            "scope": "compile",
+                            "group": "main",
+                            "source": "registry",
+                            "direct": false,
+                            "children": [
+                                {
+                                    "groupId": "org.typelevel",
+                                    "artifactId": "cats-kernel_2.13",
+                                    "version": "2.9.0",
+                                    "version_constraint": "2.9.0",
+                                    "scope": "compile",
+                                    "group": "main",
+                                    "source": "registry",
+                                    "direct": false,
+                                    "children": []
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "groupId": "org.typelevel",
+                    "artifactId": "cats-effect-std_2.13",
+                    "version": "3.5.0-RC1",
+                    "version_constraint": "3.5.0-RC1",
+                    "scope": "compile",
+                    "group": "main",
+                    "source": "registry",
+                    "direct": false,
+                    "children": []
+                }
+            ]
+        },
+        {
+            "groupId": "org.apache.logging.log4j",
+            "artifactId": "log4j-api",
+            "version": "2.0-beta9",
+            "version_constraint": "2.0-beta9",
+            "scope": "compile",
+            "group": "main",
+            "source": "registry",
+            "direct": true,
+            "children": []
+        }
+    ],
+    "total_packages": 9,
+    "direct_count": 3,
+    "transitive_count": 6,
+    "unique_packages": [
+        "com.typesafe.akka:akka-actor_2.13:2.7.0-M1",
+        "com.typesafe:config:1.4.2",
+        "org.scala-lang.modules:scala-java8-compat_2.13:1.0.0",
+        "org.typelevel:cats-effect_2.13:3.5.0-RC1",
+        "org.typelevel:cats-effect-kernel_2.13:3.5.0-RC1",
+        "org.typelevel:cats-effect-std_2.13:3.5.0-RC1",
+        "org.typelevel:cats-core_2.13:2.9.0",
+        "org.typelevel:cats-kernel_2.13:2.9.0",
+        "org.apache.logging.log4j:log4j-api:2.0-beta9"
+    ],
+    "mend_detection_expectations": {
+        "all_packages_must_appear": true,
+        "source_for_all": "registry",
+        "group_for_all": "main",
+        "no_missing_transitives": true,
+        "scala_suffix_preserved": true,
+        "prerelease_tags_preserved": true,
+        "prerelease_tag_note": "Version strings must be reported exactly as declared: '2.7.0-M1' not '2.7.0', '3.5.0-RC1' not '3.5.0', '2.0-beta9' not '2.0' or '2.0.0'. Normalization of any qualifier is a detection failure.",
+        "artifactId_format_note": "Scala %% artifacts carry _2.13 binary suffix in artifactId. Java % artifacts carry no suffix. akka-actor_2.13, cats-effect_2.13, cats-effect-kernel_2.13, cats-effect-std_2.13, cats-core_2.13, cats-kernel_2.13, scala-java8-compat_2.13 all carry the suffix. config and log4j-api do not.",
+        "failure_modes_exercised": [
+            "Mend normalizes -M1 milestone tag and reports akka-actor_2.13:2.7.0 instead of 2.7.0-M1",
+            "Mend drops the -RC1 suffix and reports cats-effect_2.13:3.5.0 instead of 3.5.0-RC1",
+            "Mend normalizes -beta9 and reports log4j-api:2.0 or 2.0.0 instead of 2.0-beta9",
+            "Prerelease qualifier on transitives stripped: cats-effect-kernel_2.13 and cats-effect-std_2.13 reported at normalized version even when direct dep was correct",
+            "scala-java8-compat_2.13 transitive of akka-actor_2.13 missing -- Mend did not traverse the milestone artifact's dependency edges",
+            "cats-kernel_2.13 transitive missing -- deep transitive (depth 3 from direct) not traversed",
+            "log4j-api incorrectly suffixed as log4j-api_2.13 (Java % artifact mistakenly treated as Scala)",
+            "group classified as test instead of main (Compile scope misclassified)",
+            "source classified as local instead of registry"
+        ]
+    }
+}
